@@ -2,7 +2,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-NAME = "Victor"  # change this
+NAME = "Victor Deliverer"  # change this
 ROLE = "DevOps Engineer in training"
 SKILLS = ["AWS EC2", "Docker", "Linux", "CI/CD", "Git", "Kubernetes", "Terraform"]
 
