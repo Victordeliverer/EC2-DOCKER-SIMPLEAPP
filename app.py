@@ -1,59 +1,502 @@
-from flask import Flask
+# from flask import Flask
 
-app = Flask(__name__)
+# app = Flask(__name__)
 
-NAME = "Victor Deliverer"  # change this
-ROLE = "DevOps Engineer in training"
-SKILLS = ["AWS EC2", "Docker", "Linux", "CI/CD", "Git", "Kubernetes", "Terraform"]
+# NAME = "Victor Deliverer"  # change this
+# ROLE = "DevOps Engineer in training"
+# SKILLS = ["AWS EC2", "Docker", "Linux", "CI/CD", "Git", "Kubernetes", "Terraform"]
 
-@app.route('/')
-def home():
-    skills_html = "".join([f"<li>{skill}</li>" for skill in SKILLS])
+# @app.route('/')
+# def home():
+#     skills_html = "".join([f"<li>{skill}</li>" for skill in SKILLS])
 
-    return f"""
-    <html>
-        <head>
-            <title>{NAME} - DevOps Portfolio</title>
-            <style>
-                body {{
-                    font-family: Arial;
-                    background-color: #0f172a;
-                    color: #e2e8f0;
-                    text-align: center;
-                    padding-top: 50px;
-                }}
-                .card {{
-                    background: #1e293b;
-                    padding: 30px;
-                    margin: auto;
-                    width: 400px;
-                    border-radius: 12px;
-                    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
-                }}
-                ul {{
-                    text-align: left;
-                    display: inline-block;
-                }}
-            </style>
-        </head>
+#     return f"""
+#     <html>
+#         <head>
+#             <title>{NAME} - DevOps Portfolio</title>
+#             <style>
+#                 body {{
+#                     font-family: Arial;
+#                     background-color: #0f172a;
+#                     color: #e2e8f0;
+#                     text-align: center;
+#                     padding-top: 50px;
+#                 }}
+#                 .card {{
+#                     background: #1e293b;
+#                     padding: 30px;
+#                     margin: auto;
+#                     width: 400px;
+#                     border-radius: 12px;
+#                     box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+#                 }}
+#                 ul {{
+#                     text-align: left;
+#                     display: inline-block;
+#                 }}
+#             </style>
+#         </head>
 
-        <body>
-            <div class="card">
-                <h1>👋 Hi, I'm {NAME}</h1>
-                <h3>{ROLE}</h3>
+#         <body>
+#             <div class="card">
+#                 <h1>👋 Hi, I'm {NAME}</h1>
+#                 <h3>{ROLE}</h3>
 
-                <p><strong>My DevOps Skills:</strong></p>
-                <ul>
-                    {skills_html}
-                </ul>
+#                 <p><strong>My DevOps Skills:</strong></p>
+#                 <ul>
+#                     {skills_html}
+#                 </ul>
 
-                <p style="margin-top:20px;">
-                    Deployed on AWS EC2 🚀
+#                 <p style="margin-top:20px;">
+#                     Deployed on AWS EC2 🚀
+#                 </p>
+#             </div>
+#         </body>
+#     </html>
+#     """
+
+# if __name__ == '__main__':
+#     app.run(debug=True, host='0.0.0.0')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Victor Deliverer – DevOps & Data Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0f1e;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #e9edf2;
+            line-height: 1.5;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #0f172a;
+            border-radius: 2rem;
+            overflow: hidden;
+            box-shadow: 0 25px 45px -12px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 2rem 2rem 1.5rem 2rem;
+            border-bottom: 1px solid #334155;
+        }
+
+        .name-title h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(120deg, #c084fc, #60a5fa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.02em;
+        }
+
+        .role-badge {
+            display: inline-block;
+            background: #1e293b;
+            border-left: 4px solid #3b82f6;
+            padding: 0.3rem 1rem;
+            margin: 0.75rem 0 0.5rem 0;
+            font-weight: 500;
+            color: #94a3b8;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .contact-info a {
+            color: #93c5fd;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-info a:hover {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 0;
+        }
+
+        .sidebar {
+            background: #0f172a;
+            border-right: 1px solid #1e293b;
+            padding: 2rem 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            border-bottom: 1.5px solid #334155;
+            display: inline-block;
+            padding-bottom: 0.3rem;
+        }
+
+        .skill-cat {
+            margin-bottom: 1.2rem;
+        }
+
+        .skill-cat h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 0.4rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: #1e293b;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #b9c7db;
+            transition: all 0.2s;
+        }
+
+        .skill-tag:hover {
+            background: #2d3a5e;
+            color: white;
+        }
+
+        .lang-item, .info-item {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: #cbd5e6;
+        }
+
+        .lang-item strong {
+            color: #e2e8f0;
+            width: 75px;
+            display: inline-block;
+        }
+
+        .content {
+            padding: 2rem 2rem 2rem 1.8rem;
+            background: #111827;
+        }
+
+        .job, .edu-item, .cert-item {
+            margin-bottom: 1.8rem;
+        }
+
+        .job-header, .edu-header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.4rem;
+        }
+
+        .job-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+
+        .company {
+            color: #60a5fa;
+            font-weight: 500;
+        }
+
+        .date {
+            font-size: 0.75rem;
+            background: #1e293b;
+            padding: 0.2rem 0.6rem;
+            border-radius: 30px;
+            color: #9ca3af;
+        }
+
+        .job-desc {
+            margin-top: 0.5rem;
+            padding-left: 0rem;
+            list-style-position: inside;
+        }
+
+        .job-desc li {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: #cbd5e6;
+            line-height: 1.4;
+        }
+
+        .edu-detail {
+            font-size: 0.85rem;
+            color: #cbd5e6;
+        }
+
+        .cert-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.3rem;
+        }
+
+        .cert-badge {
+            background: #1e293b;
+            border-radius: 20px;
+            padding: 0.2rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border: 1px solid #2d3a5e;
+        }
+
+        .progress-label {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 0.5rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #1e293b;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 780px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                border-right: none;
+                border-bottom: 1px solid #1e293b;
+            }
+            .header {
+                padding: 1.5rem;
+            }
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 1rem;
+            font-size: 0.7rem;
+            color: #475569;
+            background: #0a0f1a;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="name-title">
+            <h1>Victor Deliverer</h1>
+            <div class="role-badge">DevOps & Data Engineer</div>
+        </div>
+        <div class="contact-info">
+            <span>📍 Lisbon, Portugal</span>
+            <span>📧 <a href="mailto:deliverervictor@gmail.com">deliverervictor@gmail.com</a></span>
+            <span>📞 +351 920 575 972</span>
+            <span>🔗 linkedin.com/in/victor-deliverer</span>
+        </div>
+    </div>
+
+    <div class="main-grid">
+        <!-- LEFT SIDEBAR (skills, certs, languages) -->
+        <div class="sidebar">
+            <div class="section">
+                <div class="section-title">Profile</div>
+                <p style="font-size: 0.85rem; margin-top: 0.5rem; color: #cbd5e6;">
+                    DevOps & Data Engineer with 3+ years designing scalable, observable systems and automating infrastructure to reduce critical incidents and MTTR.
+                    Expert in Terraform, AWS, and CI/CD pipelines. Proven track record building reliable data pipelines and production-grade APIs.
                 </p>
             </div>
-        </body>
-    </html>
-    """
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+            <div class="section">
+                <div class="section-title">Technical Skills</div>
+                <div class="skill-cat">
+                    <h4>☁️ Cloud & Infra</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">AWS (S3/Lambda/EB)</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">Kubernetes</span>
+                        <span class="skill-tag">Docker</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>📊 Monitoring & Observability</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Prometheus/Grafana</span>
+                        <span class="skill-tag">New Relic</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>🐍 Languages & Frameworks</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Flask</span>
+                        <span class="skill-tag">Bash</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>🗄️ Data Engineering & DBs</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">ETL Pipelines</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="skill-cat">
+                    <h4>⚙️ CI/CD & Automation</h4>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GitLab CI/CD</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Bash Scripting</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Certifications (in progress)</div>
+                <div class="cert-list">
+                    <span class="cert-badge">AWS DevOps Engineer</span>
+                    <span class="cert-badge">CKA (Kubernetes)</span>
+                    <span class="cert-badge">Terraform Associate</span>
+                    <span class="cert-badge">Google Data Engineer (planned)</span>
+                </div>
+                <div class="progress-label">📘 Continuous learning: AWS SA, CKA, Terraform</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Languages</div>
+                <div class="lang-item"><strong>English</strong> Fluent</div>
+                <div class="lang-item"><strong>Portuguese</strong> Intermediate</div>
+                <div class="lang-item"><strong>Igbo</strong> Native</div>
+                <div class="lang-item"><strong>Ukrainian</strong> Basic</div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Interests & More</div>
+                <div class="info-item">⚽ Football &nbsp;|&nbsp; 🏃 8-mile runs &nbsp;|&nbsp; ♟️ Chess &nbsp;|&nbsp; 🏋️ Weight lifting</div>
+                <div class="info-item" style="margin-top: 8px;">🤝 Volunteer: Mentoring incarcerated juveniles – 'Beyond Framed Walls'</div>
+            </div>
+        </div>
+
+        <!-- RIGHT CONTENT (experience + education) -->
+        <div class="content">
+            <div class="section">
+                <div class="section-title">Work Experience</div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Technical Support Analyst</span>
+                        <span class="date">May 2022 – Feb 2025</span>
+                    </div>
+                    <div class="company">Concentrix, Lisbon, Portugal</div>
+                    <ul class="job-desc">
+                        <li>Analyzed and categorized 100+ weekly customer tickets, identifying root cause trends → 15% reduction in repeat calls.</li>
+                        <li>Leveraged CRM dashboards to track KPIs (CSAT, FCR), improving team handling efficiency by 20%.</li>
+                        <li>Collaborated cross‑functionally to share insights and drive issue resolution.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">DevOps Engineer – Observability</span>
+                        <span class="date">June 2020 – Aug 2021</span>
+                    </div>
+                    <div class="company">Jumia, Lagos, Nigeria</div>
+                    <ul class="job-desc">
+                        <li>Architected centralized observability platform for 50+ microservices using Prometheus, Grafana, and centralized log management.</li>
+                        <li>Automated 200+ monitoring dashboards and alerts using Terraform modules → reduced manual configuration time by 90%.</li>
+                        <li>Engineered high‑volume log ingestion pipeline achieving 99.9% data reliability and eliminating log‑based blind spots for critical payment and order services.</li>
+                        <li>Reduced SEV‑1 incidents by 25% and MTTR by 40% through performance bottleneck remediation.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Co-Founder, Engineering Lead</span>
+                        <span class="date">Feb 2020 – Present</span>
+                    </div>
+                    <div class="company">Delver Farms Integrated, Abia, Nigeria</div>
+                    <ul class="job-desc">
+                        <li>Led technical vision & backend infrastructure for sustainable rural farming investment platform.</li>
+                        <li>Designed automated deployment pipelines for scalable cloud deployments.</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <span class="job-title">Data Engineer</span>
+                        <span class="date">Mar 2018 – Jan 2020</span>
+                    </div>
+                    <div class="company">Check DC, Lagos, Nigeria</div>
+                    <ul class="job-desc">
+                        <li>Built RESTful APIs handling 10k+ daily requests with 99.95% uptime.</li>
+                        <li>Implemented payment webhooks + idempotency keys → reduced card‑payment complaints by 75%.</li>
+                        <li>Deployed highly available database cluster ensuring 24/7 data integrity.</li>
+                        <li>Established CI/CD pipelines (Jenkins, Docker) slashing deployment time from 2h → 15 min.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Education</div>
+                <div class="edu-item">
+                    <div class="job-header">
+                        <span class="job-title">Computer Science & Information Technology</span>
+                        <span class="date">Sept 2021 – Mar 2022</span>
+                    </div>
+                    <div class="company">Krok University, Ukraine</div>
+                    <div class="edu-detail">Modules: Computational Mathematics, Optimization, Machine Learning, Data Analysis, Algorithm Design.<br>
+                    Practical: Predictive modelling, Data Mining, Python, Matplotlib.</div>
+                </div>
+                <div class="edu-item">
+                    <div class="job-header">
+                        <span class="job-title">B.Eng Marine Engineering</span>
+                        <span class="date">Sept 2012 – Nov 2017</span>
+                    </div>
+                    <div class="company">Rivers State University (RSU), Nigeria</div>
+                    <div class="edu-detail">🎓 Graduated in Top 1% of a class of 129</div>
+                </div>
+            </div>
+
+            <hr>
+            <div style="text-align: center; font-size: 0.8rem; color: #60a5fa; margin-top: 0.5rem;">
+                🚀 Deployed with Docker + AWS EC2 | Infrastructure as Code mindset
+            </div>
+        </div>
+    </div>
+    <div class="footer-note">
+        Victor Deliverer – DevOps & Data Engineer – Portfolio built with modern HTML/CSS – Available for opportunities
+    </div>
+</div>
+</body>
+</html>
